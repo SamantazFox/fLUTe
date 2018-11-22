@@ -1,0 +1,7 @@
+# File extensions
+*.lut
+*.zip
+
+# Directories
+luts/
+wip/
