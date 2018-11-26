@@ -95,8 +95,3 @@ def fileParse_Bin(filePath):
 	return rgbValues
 
 # end of fileParse_Bin()
-
-
-# "Main"
-fileParse_Bin('luts/topography.lut')
-fileParse_Txt('luts/vivid.lut')
