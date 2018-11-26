@@ -3,5 +3,6 @@
 *.zip
 
 # Directories
+__pycache__/
 luts/
 wip/
