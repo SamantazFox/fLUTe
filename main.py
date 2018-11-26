@@ -1,5 +1,9 @@
 from flute.fileopen import *
+from flute.display import simple
 
 
-fileParse_Bin('luts/topography.lut')
-fileParse_Txt('luts/vivid.lut')
+data = fileParse_Bin('luts/topography.lut')
+simple.unixTerm(data, 5)
+
+data = fileParse_Txt('luts/vivid.lut')
+simple.unixTerm(data, 5)

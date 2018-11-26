@@ -40,10 +40,6 @@ def fileParse_Txt(filePath):
 		# Once we finished parsing the line, add the list to 'rgbValues'
 		rgbValues.append(tmpArray)
 
-	# Debug
-	print('LUT size: {}'.format(len(rgbValues)))
-	for val in rgbValues: print(val)
-
 	# Return the array containing the colors
 	return rgbValues
 
@@ -86,10 +82,6 @@ def fileParse_Bin(filePath):
 
 		# Append data to output list
 		rgbValues.append([r, g, b])
-
-	# Debug
-	print('LUT size: {}'.format(len(rgbValues)))
-	for val in rgbValues: print(val)
 
 	# Return the array containing the colors
 	return rgbValues
