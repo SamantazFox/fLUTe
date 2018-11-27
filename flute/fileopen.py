@@ -64,15 +64,20 @@ def fileParse_Bin(filePath):
 	# Init the list that will be returned to the caller
 	rgbValues = []
 
+	# If the binary data begins with the magic bytes 0x4943 0x4f4c, then it has
+	# a 32-bits header before the real data, which has to be removed.
+	if binData[:4] == bytearray(b'\x49\x43\x4f\x4c'):
+		binData = binData[32:]
+
 	# Compute the length of one data block
 	dataLen   = len(binData)
 	remainder = dataLen % 3
 	blockSize = int((dataLen - remainder) / 3)
 
-	# If the LUT has an amount of byte that can't be divided by 3 (e.g some LUTs
-	# have 50 bytes), then drop the first few byte(s)
+	# If the LUT can't be divided in 3 blocks, print an error
 	if (remainder != 0):
-		binData = binData[remainder-1:]
+		print("Can\'t open LUT at path '{}'".format(filePath))
+		return rgbValues
 
 	# Retrieve the different RGB values in this LUT
 	for i in range(blockSize):
