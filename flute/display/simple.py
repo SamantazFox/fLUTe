@@ -24,9 +24,16 @@ def unixTerm(rgbArray, linesCount = 3):
 
 	"""
 
+	# Check that the LUT is not empty
+	arrayLength = len(rgbArray)
+
+	if not (arrayLength > 0):
+		print('Cannot display empty LUT')
+		return
+
 	# Display the amount of RGB values in the array
 	print('')
-	print('LUT size: ' + str(len(rgbArray)) )
+	print('LUT size: ' + str(arrayLength))
 
 	# Init the output string
 	outStr = ''
