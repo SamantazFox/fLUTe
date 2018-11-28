@@ -5,6 +5,7 @@ fLUTe is a small GUI utility written in Python to open and edit LUTs (Look Up Ta
 
 You can get sample LUTs here:
 	http://rsb.info.nih.gov/ij/download/luts/luts.zip
+	http://rsb.info.nih.gov/ij/download/luts/luts2.zip
 
 
 Notice
