@@ -28,14 +28,43 @@ def fileParse_Txt(filePath):
 	# Init the list that will hold the output data
 	rgbValues = []
 
+	# Each value of the LUT are stored on their own line, in the format 'R G B'
+	# So split the file on new lines ('\n') in order to parse it
+	splittedData = textData.splitlines()
+
+	# The LUT has a header line if the first line contains one of those:
+	#   "Index", "Red", "Green" or "Blue"
+	firstLineLower = splittedData[0].lower()
+	hasIndexValues = False
+
+	if ('red' and 'green' and 'blue') in firstLineLower:
+		# Detect if the line contains the 4th "index" column
+		if 'index' in firstLineLower: hasIndexValues = True
+
+		# Drop the first line from data
+		splittedData = splittedData[0:]
+
 	# Loop through lines
-	for line in textData.splitlines():
-		tmpLine = line.split(sep = ' ')
+	# TODO: use regexes!!
+	for line in splittedData:
+		# Detect the separation character used in lines (tab or space(s)?)
+		# If none of them are used, skip line
+		if '\t' in line:  splitChar = '\t'
+		elif ' ' in line: splitChar = ' '
+		else: continue
+
+		# Split current line using the character detected above
+		tmpLine = line.split(sep = splitChar)
 		tmpArray = []
 
 		for c in tmpLine:
 			if c.isprintable() and c.isnumeric():
 				tmpArray.append(int(c))
+
+		# In the case where the line contains 4 values, drop the "Index" one
+		# If the current line did not provide 3 values, ignore it
+		if (len(tmpArray) == 4 and hasIndexValues): tmpArray.pop(0)
+		if len(tmpArray) != 3: continue
 
 		# Once we finished parsing the line, add the list to 'rgbValues'
 		rgbValues.append(tmpArray)
