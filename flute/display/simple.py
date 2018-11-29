@@ -12,12 +12,12 @@
 from os import system
 
 
-def unixTerm(rgbArray, linesCount = 3):
+def unixTerm(rgbArray, lineCount = 3):
 	""" unixTerm
 
 	Input(s):
 		rgbArray:   A list of RGB values, like what fileParse_xxx() can return
-		linesCount: The amount of terminal lines to use when printing the LUT 
+		lineCount:  The amount of terminal lines to use when printing the LUT
 
 	Returns:
 		Nothing.
@@ -28,12 +28,11 @@ def unixTerm(rgbArray, linesCount = 3):
 	arrayLength = len(rgbArray)
 
 	if not (arrayLength > 0):
-		print('Cannot display empty LUT')
+		print('\nCannot display empty LUT')
 		return
 
 	# Display the amount of RGB values in the array
-	print('')
-	print('LUT size: ' + str(arrayLength))
+	print('\nLUT size: ' + str(arrayLength))
 
 	# Init the output string
 	outStr = ''
@@ -46,7 +45,7 @@ def unixTerm(rgbArray, linesCount = 3):
 	outStr +=  '\e[0m\n'
 
 	# Print as many lines as what was provided in parameter
-	for i in range(linesCount):
+	for i in range(lineCount):
 		system('printf "' + outStr + '"')
 
 # end of unixTerm()
